@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script src="../node_modules/@vue/reactivity/dist/reactivity.global.js"></script>
+    <script>
+        const {reactive, shallowReactive, readonly, shallowReadonly} = VueReactivity;
+        const state = readonly({name: 'zf', age: {n : 18}});
+        state.age.n = 10;
+        console.log(state);
+        console.log(state.age);
+    </script>
+</body>
+</html>

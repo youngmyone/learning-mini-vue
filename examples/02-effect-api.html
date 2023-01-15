@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="../node_modules/@vue/reactivity/dist/reactivity.global.js"></script>
+    <script>
+        const { reactive, effect } = VueReactivity;
+        const state = reactive({ name: 'zs', age: 18, arr: [1,2,3]});
+        
+        effect(() => {
+            console.log('effect running');
+            app.innerHTML = state.arr;
+        });
+
+        setTimeout(() => {
+            // state.name = 'lisi'; // 更改name属性需要重新触发effect
+            // state.arr[10] = 1;
+            state.arr.length = 1;
+        }, 1000);
+        // effect(() => {
+        //     console.log('effect running');
+        //     app.innerHTML = state.name + ' ' + state.age;
+        // });
+
+        // 1. effect中的所有属性都会收集effect
+        // 2. 当这个属性值发生变化的时候，会重新执行effect
+    </script>
+</body>
+</html>
